@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ArchitectureCompare</string>
+    <string name="mvc_button">MVC</string>
+    <string name="mvp_button">MVP</string>
+    <string name="mvvm_button">MVVM</string>
+    <string name="insert_your_search">Insert your search</string>
 </resources>
