@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barros.architecturecompare.databinding.GridItemBinding
 import com.barros.architecturecompare.model.RedditItem
 
-class ItemGridAdapter(val onClickListener: OnClickListener) :
+class ItemGridAdapter(private val onClickListener: OnClickListener) :
     ListAdapter<RedditItem, ItemGridAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

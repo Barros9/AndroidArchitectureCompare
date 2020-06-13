@@ -28,6 +28,7 @@
                 app:imageUrl="@{viewModel.redditItem.thumbnail}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                android:contentDescription="@string/reddit_item_image"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView

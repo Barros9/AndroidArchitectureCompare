@@ -7,4 +7,5 @@
     <string name="reddit_thumbnail">Reddit thumbnail</string>
     <string name="retry_text">Retry</string>
     <string name="error_text">Unable to get your search, please retry</string>
+    <string name="reddit_item_image">Reddit item image</string>
 </resources>

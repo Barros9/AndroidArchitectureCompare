@@ -10,7 +10,7 @@ import retrofit2.Response
 
 class MvcController(private val view: MvcFragment, private val search: String) {
 
-    private val TAG = MvcController::class.qualifiedName
+    private val tag = MvcController::class.qualifiedName
 
     init {
         fetchItems()
@@ -19,7 +19,7 @@ class MvcController(private val view: MvcFragment, private val search: String) {
     private fun fetchItems() {
         RedditService().getResult(search).enqueue(object : Callback<RedditResponse> {
             override fun onFailure(call: Call<RedditResponse>, t: Throwable) {
-                Log.e(TAG, "Error -> ${t.message}")
+                Log.e(tag, "Error -> ${t.message}")
                 view.onError()
             }
 
@@ -32,7 +32,7 @@ class MvcController(private val view: MvcFragment, private val search: String) {
                     RedditItem(item.title, item.thumbnail)
                 }
                 view.setValues(redditItemList ?: mutableListOf())
-                Log.d(TAG, "Success -> size: ${redditItemList?.size}")
+                Log.d(tag, "Success -> size: ${redditItemList?.size}")
             }
         })
     }

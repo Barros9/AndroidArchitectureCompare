@@ -14,7 +14,7 @@ import retrofit2.Response
 
 class MvvmViewModel(private val search: String) : ViewModel() {
 
-    private val TAG = MvvmViewModel::class.qualifiedName
+    private val tag = MvvmViewModel::class.qualifiedName
 
     private var _items = MutableLiveData<List<RedditItem>>()
     val items: LiveData<List<RedditItem>>
@@ -40,7 +40,7 @@ class MvvmViewModel(private val search: String) : ViewModel() {
                 errorState.value = true
                 observedGridState.set(false)
                 observedProgressBarState.set(false)
-                Log.e(TAG, "Error -> ${t.message}")
+                Log.e(tag, "Error -> ${t.message}")
             }
 
             override fun onResponse(
@@ -55,7 +55,7 @@ class MvvmViewModel(private val search: String) : ViewModel() {
                 errorState.value = false
                 observedGridState.set(true)
                 observedProgressBarState.set(false)
-                Log.d(TAG, "Success -> size: ${redditItemList?.size}")
+                Log.d(tag, "Success -> size: ${redditItemList?.size}")
             }
         })
     }
