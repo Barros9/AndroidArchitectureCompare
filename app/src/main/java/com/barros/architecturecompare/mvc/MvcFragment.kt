@@ -32,7 +32,9 @@ class MvcFragment : Fragment() {
         }
 
         controller = MvcController(this, search)
-        adapter = ItemGridAdapter()
+        adapter = ItemGridAdapter(ItemGridAdapter.OnClickListener {
+            Toast.makeText(context, it.title, Toast.LENGTH_SHORT).show()
+        })
         recyclerView = view.findViewById(R.id.photos_grid)
         recyclerView.adapter = adapter
 

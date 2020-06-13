@@ -8,11 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.barros.architecturecompare.databinding.GridItemBinding
 import com.barros.architecturecompare.model.RedditItem
 
-class ItemGridAdapter :
+class ItemGridAdapter(val onClickListener: OnClickListener) :
     ListAdapter<RedditItem, ItemGridAdapter.ViewHolder>(DiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(item)
+        }
         holder.bind(item)
     }
 
@@ -27,6 +30,10 @@ class ItemGridAdapter :
             binding.redditItem = item
             binding.executePendingBindings()
         }
+    }
+
+    class OnClickListener(val clickListener: (item: RedditItem) -> Unit) {
+        fun onClick(item: RedditItem) = clickListener(item)
     }
 }
 

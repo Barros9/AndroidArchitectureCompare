@@ -12,15 +12,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MvvmViewModel(
-    private val search: String
-) : ViewModel() {
+class MvvmViewModel(private val search: String) : ViewModel() {
 
     private val TAG = MvvmViewModel::class.qualifiedName
 
     private var _items = MutableLiveData<List<RedditItem>>()
     val items: LiveData<List<RedditItem>>
         get() = _items
+
+    private val _navigateToItem = MutableLiveData<RedditItem>()
+    val navigateToItem: LiveData<RedditItem>
+        get() = _navigateToItem
 
     var errorState = MutableLiveData(false)
     val observedGridState = ObservableBoolean(false)
@@ -63,5 +65,13 @@ class MvvmViewModel(
         observedProgressBarState.set(true)
         observedGridState.set(false)
         errorState.value = false
+    }
+
+    fun displayPropertyDetails(item: RedditItem) {
+        _navigateToItem.value = item
+    }
+
+    fun displayPropertyDetailsComplete() {
+        _navigateToItem.value = null
     }
 }

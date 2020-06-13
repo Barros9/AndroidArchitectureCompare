@@ -23,6 +23,7 @@
             app:destination="@id/mvvmFragment"
             app:launchSingleTop="true" />
     </fragment>
+
     <fragment
         android:id="@+id/mvcFragment"
         android:name="com.barros.architecturecompare.mvc.MvcFragment"
@@ -32,6 +33,7 @@
             android:name="mvcSearch"
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/mvpFragment"
         android:name="com.barros.architecturecompare.mvp.MvpFragment"
@@ -40,6 +42,7 @@
             android:name="mvpSearch"
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/mvvmFragment"
         android:name="com.barros.architecturecompare.mvvm.MvvmFragment"
@@ -47,5 +50,17 @@
         <argument
             android:name="mvvmSearch"
             app:argType="string" />
+        <action
+            android:id="@+id/action_mvvmFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.barros.architecturecompare.mvvm.DetailFragment"
+        android:label="DetailFragment">
+        <argument
+            android:name="item"
+            app:argType="com.barros.architecturecompare.model.RedditItem" />
     </fragment>
 </navigation>
