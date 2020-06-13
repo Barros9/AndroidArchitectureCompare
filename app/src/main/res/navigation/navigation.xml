@@ -28,15 +28,24 @@
         android:name="com.barros.architecturecompare.mvc.MvcFragment"
         android:label="fragment_mvc"
         tools:layout="@layout/fragment_mvc" >
+        <argument
+            android:name="mvcSearch"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mvpFragment"
         android:name="com.barros.architecturecompare.mvp.MvpFragment"
         android:label="MvpFragment" >
+        <argument
+            android:name="mvpSearch"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/mvvmFragment"
         android:name="com.barros.architecturecompare.mvvm.MvvmFragment"
         android:label="MvvmFragment" >
+        <argument
+            android:name="mvvmSearch"
+            app:argType="string" />
     </fragment>
 </navigation>

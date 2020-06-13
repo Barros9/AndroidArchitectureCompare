@@ -4,4 +4,7 @@
     <string name="mvp_button">MVP</string>
     <string name="mvvm_button">MVVM</string>
     <string name="insert_your_search">Insert your search</string>
+    <string name="reddit_thumbnail">Reddit thumbnail</string>
+    <string name="retry">Retry</string>
+    <string name="error_text">Unable to get your search, please retry</string>
 </resources>

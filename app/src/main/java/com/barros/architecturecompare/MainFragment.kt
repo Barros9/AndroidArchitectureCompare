@@ -24,19 +24,19 @@ class MainFragment : Fragment() {
         binding.mvcButton.setOnClickListener { view ->
             hideKeyBoard(view)
             view.findNavController()
-                .navigate(MainFragmentDirections.actionMainFragmentToMvcFragment())
+                .navigate(MainFragmentDirections.actionMainFragmentToMvcFragment(binding.searchText.text.toString()))
         }
 
         binding.mvpButton.setOnClickListener { view ->
             hideKeyBoard(view)
             view.findNavController()
-                .navigate(MainFragmentDirections.actionMainFragmentToMvpFragment())
+                .navigate(MainFragmentDirections.actionMainFragmentToMvpFragment(binding.searchText.text.toString()))
         }
 
         binding.mvvmButton.setOnClickListener { view ->
             hideKeyBoard(view)
             view.findNavController()
-                .navigate(MainFragmentDirections.actionMainFragmentToMvvmFragment())
+                .navigate(MainFragmentDirections.actionMainFragmentToMvvmFragment(binding.searchText.text.toString()))
         }
 
         return binding.root
