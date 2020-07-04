@@ -54,5 +54,15 @@
             app:layout_constraintStart_toStartOf="@+id/mvp_button"
             app:layout_constraintTop_toBottomOf="@+id/mvp_button" />
 
+        <Button
+            android:id="@+id/mvi_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/mvi_button"
+            app:layout_constraintEnd_toEndOf="@+id/mvp_button"
+            app:layout_constraintStart_toStartOf="@+id/mvp_button"
+            app:layout_constraintTop_toBottomOf="@+id/mvvm_button" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

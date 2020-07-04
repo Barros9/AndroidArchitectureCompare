@@ -8,4 +8,5 @@
     <string name="retry_text">Retry</string>
     <string name="error_text">Unable to get your search, please retry</string>
     <string name="reddit_item_image">Reddit item image</string>
+    <string name="mvi_button">MVI</string>
 </resources>

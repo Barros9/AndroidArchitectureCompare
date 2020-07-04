@@ -22,6 +22,9 @@
             android:id="@+id/action_mainFragment_to_mvvmFragment"
             app:destination="@id/mvvmFragment"
             app:launchSingleTop="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_mviFragment"
+            app:destination="@id/mviFragment" />
     </fragment>
 
     <fragment
@@ -62,5 +65,14 @@
         <argument
             android:name="item"
             app:argType="com.barros.architecturecompare.model.RedditItem" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mviFragment"
+        android:name="com.barros.architecturecompare.mvi.MviFragment"
+        android:label="MviFragment">
+        <argument
+            android:name="mviSearch"
+            app:argType="string" />
     </fragment>
 </navigation>

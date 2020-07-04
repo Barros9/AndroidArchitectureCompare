@@ -39,6 +39,12 @@ class MainFragment : Fragment() {
                 .navigate(MainFragmentDirections.actionMainFragmentToMvvmFragment(binding.searchText.text.toString()))
         }
 
+        binding.mviButton.setOnClickListener { view ->
+            hideKeyBoard(view)
+            view.findNavController()
+                .navigate(MainFragmentDirections.actionMainFragmentToMviFragment(binding.searchText.text.toString()))
+        }
+
         return binding.root
     }
 

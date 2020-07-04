@@ -36,6 +36,11 @@
                                 <LayoutPositions />
                               </value>
                             </entry>
+                            <entry key="action_mainFragment_to_mviFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="action_mainFragment_to_mvpFragment">
                               <value>
                                 <LayoutPositions />
@@ -58,6 +63,18 @@
                           <Point>
                             <option name="x" value="-86" />
                             <option name="y" value="-89" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="mviFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-347" />
+                            <option name="y" value="717" />
                           </Point>
                         </option>
                       </LayoutPositions>
