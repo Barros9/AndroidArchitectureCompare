@@ -43,22 +43,22 @@ class MviViewModel : ViewModel(), Model<MviState, MviIntent> {
     private fun fetchData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                updateState { it.copy(isLoading = true) }
-                val redditItemList =
-                    RedditServiceCoroutines.getResultListCoroutines()
-                        .getTop(search.value!!).data.children.map { response ->
-                            RedditItem(response.data.title, response.data.thumbnail)
-                        }
-                updateState { it.copy(isLoading = false, redditItemList = redditItemList) }
+                updateState { MviState(isLoading = true) }
+                updateState {
+                    MviState(
+                        redditItemList = RedditServiceCoroutines.getResultListCoroutines()
+                            .getTop(search.value!!).data.children.map { response ->
+                                RedditItem(response.data.title, response.data.thumbnail)
+                            }
+                    )
+                }
             } catch (e: Exception) {
-                updateState { it.copy(isLoading = false, isError = true) }
+                updateState { MviState(isError = true) }
             }
         }
     }
 
-    private fun updateState(handler: suspend (state: MviState) -> MviState) {
-        viewModelScope.launch(Dispatchers.Main) {
-            _state.value = handler(state.value!!)
-        }
+    private suspend fun updateState(handler: suspend (state: MviState) -> MviState) {
+        _state.postValue(handler(state.value!!))
     }
 }
