@@ -13,55 +13,59 @@
             android:id="@+id/searchText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="@string/insert_your_search"
             android:gravity="center"
+            android:hint="@string/insert_your_search"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
             app:layout_constraintBottom_toTopOf="@+id/mvc_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:importantForAutofill="no" />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
             android:id="@+id/mvc_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/mvc_button"
             app:layout_constraintBottom_toTopOf="@+id/mvp_button"
-            app:layout_constraintEnd_toEndOf="@+id/mvp_button"
-            app:layout_constraintStart_toStartOf="@+id/mvp_button" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchText" />
 
         <Button
             android:id="@+id/mvp_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="@string/mvp_button"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/mvvm_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/mvc_button" />
 
         <Button
             android:id="@+id/mvvm_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/mvvm_button"
-            app:layout_constraintEnd_toEndOf="@+id/mvp_button"
-            app:layout_constraintStart_toStartOf="@+id/mvp_button"
+            app:layout_constraintBottom_toTopOf="@+id/mvi_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mvp_button" />
 
         <Button
             android:id="@+id/mvi_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="@string/mvi_button"
-            app:layout_constraintEnd_toEndOf="@+id/mvp_button"
-            app:layout_constraintStart_toStartOf="@+id/mvp_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mvvm_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
