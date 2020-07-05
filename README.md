@@ -22,9 +22,9 @@ The API is "https://www.reddit.com/r/{SEARCH_PARAM}/top.json"
 
 ## MVI
 * Model — the data layer, abstracts the data source. The ViewModel works with the Model to get and save the data.
-* View — the UI layer, receives immutable states and update the UI.
-* Intent - the action layer, user’s intent when interacting with the UI. For example, a click on a button.
-* ViewModel — the logic layer, accepts user's intent as input and produces one or more states as output
+* View — the UI layer, receives states and update the UI.
+* Intent — the action layer, user’s intent when interacting with the UI, for example, a click on a button.
+* ViewModel — the logic layer, accepts user's intent as input and produces states as output
 
 
 ## Libraries
