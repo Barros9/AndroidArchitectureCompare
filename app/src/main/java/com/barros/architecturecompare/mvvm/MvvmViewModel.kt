@@ -5,6 +5,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.barros.architecturecompare.model.RedditApi
 import com.barros.architecturecompare.model.RedditItem
 import com.barros.architecturecompare.model.RedditResponse
 import com.barros.architecturecompare.model.RedditService
@@ -35,29 +36,30 @@ class MvvmViewModel(private val search: String) : ViewModel() {
     private fun fetchItems() {
         observedProgressBarState.set(true)
 
-        RedditService().getResult(search).enqueue(object : Callback<RedditResponse> {
-            override fun onFailure(call: Call<RedditResponse>, t: Throwable) {
-                errorState.value = true
-                observedGridState.set(false)
-                observedProgressBarState.set(false)
-                Log.e(tag, "Error -> ${t.message}")
-            }
-
-            override fun onResponse(
-                call: Call<RedditResponse>,
-                response: Response<RedditResponse>
-            ) {
-                val redditItemList = response.body()?.data?.children?.map {
-                    val item = it.data
-                    RedditItem(item.title, item.thumbnail)
+        RedditService().createService(RedditApi::class.java).getTop(search)
+            .enqueue(object : Callback<RedditResponse> {
+                override fun onFailure(call: Call<RedditResponse>, t: Throwable) {
+                    errorState.value = true
+                    observedGridState.set(false)
+                    observedProgressBarState.set(false)
+                    Log.e(tag, "Error -> ${t.message}")
                 }
-                _items.value = redditItemList
-                errorState.value = false
-                observedGridState.set(true)
-                observedProgressBarState.set(false)
-                Log.d(tag, "Success -> size: ${redditItemList?.size}")
-            }
-        })
+
+                override fun onResponse(
+                    call: Call<RedditResponse>,
+                    response: Response<RedditResponse>
+                ) {
+                    val redditItemList = response.body()?.data?.children?.map {
+                        val item = it.data
+                        RedditItem(item.title, item.thumbnail)
+                    }
+                    _items.value = redditItemList
+                    errorState.value = false
+                    observedGridState.set(true)
+                    observedProgressBarState.set(false)
+                    Log.d(tag, "Success -> size: ${redditItemList?.size}")
+                }
+            })
     }
 
     fun onRetry() {

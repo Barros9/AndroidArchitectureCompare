@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.barros.architecturecompare.model.RedditApi
 import com.barros.architecturecompare.model.RedditItem
-import com.barros.architecturecompare.model.RedditServiceCoroutines
+import com.barros.architecturecompare.model.RedditService
 import com.barros.architecturecompare.mvi.interfaces.Model
 import com.barros.architecturecompare.mvi.states.MviIntent
 import com.barros.architecturecompare.mvi.states.MviState
@@ -46,8 +47,8 @@ class MviViewModel : ViewModel(), Model<MviState, MviIntent> {
                 updateState { MviState(isLoading = true) }
                 updateState {
                     MviState(
-                        redditItemList = RedditServiceCoroutines.getResultListCoroutines()
-                            .getTop(search.value!!).data.children.map { response ->
+                        redditItemList = RedditService().createService(RedditApi::class.java)
+                            .getTopCoroutines(search.value!!).data.children.map { response ->
                                 RedditItem(response.data.title, response.data.thumbnail)
                             }
                     )

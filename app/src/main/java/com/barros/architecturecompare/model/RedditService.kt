@@ -1,34 +1,26 @@
 package com.barros.architecturecompare.model
 
-import retrofit2.Call
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
-
-private const val BASE_URL = "https://www.reddit.com/r/"
 
 class RedditService {
 
-    private val api: RedditApi
+    private val retrofit: Retrofit
 
     init {
-        val retrofit = Retrofit.Builder()
+        retrofit = Retrofit.Builder()
+            .client(OkHttpClient())
             .baseUrl(BASE_URL)
             .addConverterFactory(MoshiConverterFactory.create())
+            .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .build()
-        api = retrofit.create(RedditApi::class.java)
     }
 
-    fun getResult(value: String): Call<RedditResponse> {
-        return api.getTop(value)
-    }
-}
+    fun <T> createService(service: Class<T>): T = retrofit.create(service)
 
-object RedditServiceCoroutines {
-    fun getResultListCoroutines(): RedditApiCoroutines {
-        return Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create())
-            .build()
-            .create(RedditApiCoroutines::class.java)
+    companion object {
+        const val BASE_URL = "https://www.reddit.com/r/"
     }
 }

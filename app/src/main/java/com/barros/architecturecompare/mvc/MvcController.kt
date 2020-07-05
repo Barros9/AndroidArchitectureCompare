@@ -1,6 +1,7 @@
 package com.barros.architecturecompare.mvc
 
 import android.util.Log
+import com.barros.architecturecompare.model.RedditApi
 import com.barros.architecturecompare.model.RedditItem
 import com.barros.architecturecompare.model.RedditResponse
 import com.barros.architecturecompare.model.RedditService
@@ -17,24 +18,25 @@ class MvcController(private val view: MvcFragment, private val search: String) {
     }
 
     private fun fetchItems() {
-        RedditService().getResult(search).enqueue(object : Callback<RedditResponse> {
-            override fun onFailure(call: Call<RedditResponse>, t: Throwable) {
-                Log.e(tag, "Error -> ${t.message}")
-                view.onError()
-            }
-
-            override fun onResponse(
-                call: Call<RedditResponse>,
-                response: Response<RedditResponse>
-            ) {
-                val redditItemList = response.body()?.data?.children?.map {
-                    val item = it.data
-                    RedditItem(item.title, item.thumbnail)
+        RedditService().createService(RedditApi::class.java).getTop(search)
+            .enqueue(object : Callback<RedditResponse> {
+                override fun onFailure(call: Call<RedditResponse>, t: Throwable) {
+                    Log.e(tag, "Error -> ${t.message}")
+                    view.onError()
                 }
-                view.setValues(redditItemList ?: mutableListOf())
-                Log.d(tag, "Success -> size: ${redditItemList?.size}")
-            }
-        })
+
+                override fun onResponse(
+                    call: Call<RedditResponse>,
+                    response: Response<RedditResponse>
+                ) {
+                    val redditItemList = response.body()?.data?.children?.map {
+                        val item = it.data
+                        RedditItem(item.title, item.thumbnail)
+                    }
+                    view.setValues(redditItemList ?: mutableListOf())
+                    Log.d(tag, "Success -> size: ${redditItemList?.size}")
+                }
+            })
     }
 
     fun onRefresh() {
