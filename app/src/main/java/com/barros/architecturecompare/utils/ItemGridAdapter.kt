@@ -9,9 +9,9 @@ import com.barros.architecturecompare.databinding.GridItemBinding
 import com.barros.architecturecompare.model.RedditItem
 
 class ItemGridAdapter(private val onClickListener: OnClickListener) :
-    ListAdapter<RedditItem, ItemGridAdapter.ViewHolder>(DiffCallback()) {
+    ListAdapter<RedditItem, ItemGridAdapter.ItemViewHolder>(DiffCallback()) {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
         val item = getItem(position)
         holder.itemView.setOnClickListener {
             onClickListener.onClick(item)
@@ -19,11 +19,11 @@ class ItemGridAdapter(private val onClickListener: OnClickListener) :
         holder.bind(item)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(GridItemBinding.inflate(LayoutInflater.from(parent.context)))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        return ItemViewHolder(GridItemBinding.inflate(LayoutInflater.from(parent.context)))
     }
 
-    class ViewHolder(private val binding: GridItemBinding) :
+    class ItemViewHolder(private val binding: GridItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: RedditItem) {
@@ -35,14 +35,14 @@ class ItemGridAdapter(private val onClickListener: OnClickListener) :
     class OnClickListener(val clickListener: (item: RedditItem) -> Unit) {
         fun onClick(item: RedditItem) = clickListener(item)
     }
-}
 
-class DiffCallback : DiffUtil.ItemCallback<RedditItem>() {
-    override fun areItemsTheSame(oldItem: RedditItem, newItem: RedditItem): Boolean {
-        return oldItem.title == newItem.title
-    }
+    class DiffCallback : DiffUtil.ItemCallback<RedditItem>() {
+        override fun areItemsTheSame(oldItem: RedditItem, newItem: RedditItem): Boolean {
+            return oldItem.title == newItem.title
+        }
 
-    override fun areContentsTheSame(oldItem: RedditItem, newItem: RedditItem): Boolean {
-        return oldItem == newItem
+        override fun areContentsTheSame(oldItem: RedditItem, newItem: RedditItem): Boolean {
+            return oldItem == newItem
+        }
     }
 }
