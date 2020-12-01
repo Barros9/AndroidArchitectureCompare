@@ -1,9 +1,4 @@
 buildscript {
-    ext.gradle_version = '4.0.1'
-    ext.kotlin_version = '1.4.10'
-    ext.ktlint_version = '9.2.1'
-    ext.safe_args_version = '1.0.0'
-
     repositories {
         google()
         jcenter()
