@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.barros.architecturecompare.R
@@ -21,36 +20,37 @@ class MvvmFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         var search = ""
         arguments?.let {
             search = MvvmFragmentArgs.fromBundle(it).mvvmSearch
         }
 
-        val binding = FragmentMvvmBinding.inflate(inflater)
         val viewModelFactory = ViewModelFactory(search)
         viewModel = ViewModelProvider(this, viewModelFactory).get(MvvmViewModel::class.java)
-        binding.lifecycleOwner = this
-        binding.mvvmViewModel = viewModel
 
-        binding.photosGrid.adapter = ItemGridAdapter(ItemGridAdapter.OnClickListener {
-            viewModel.displayPropertyDetails(it)
-        })
-
-        viewModel.navigateToItem.observe(viewLifecycleOwner, Observer {
+        viewModel.navigateToItem.observe(viewLifecycleOwner) {
             if (null != it) {
-                this.findNavController().navigate(MvvmFragmentDirections.actionMvvmFragmentToDetailFragment(it))
+                this.findNavController()
+                    .navigate(MvvmFragmentDirections.actionMvvmFragmentToDetailFragment(it))
                 viewModel.displayPropertyDetailsComplete()
             }
-        })
+        }
 
-        viewModel.errorState.observe(viewLifecycleOwner, Observer { error ->
+        viewModel.errorState.observe(viewLifecycleOwner) { error ->
             if (error) {
                 Toast.makeText(context, getString(R.string.error_text), Toast.LENGTH_SHORT)
                     .show()
             }
-        })
+        }
 
-        return binding.root
+        return FragmentMvvmBinding.inflate(inflater).apply {
+            lifecycleOwner = this@MvvmFragment
+            mvvmViewModel = viewModel
+
+            photosGrid.adapter = ItemGridAdapter(ItemGridAdapter.OnClickListener {
+                viewModel.displayPropertyDetails(it)
+            })
+        }.root
     }
 }

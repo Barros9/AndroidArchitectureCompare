@@ -11,24 +11,24 @@ import com.barros.architecturecompare.model.RedditItem
 
 class DetailFragment : Fragment() {
 
-    private lateinit var viewModel: DetailViewModel
     private lateinit var item: RedditItem
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         arguments?.let {
             item = DetailFragmentArgs.fromBundle(it).item
         }
 
-        val binding = FragmentDetailBinding.inflate(inflater)
         val detailViewModelFactory = DetailViewModelFactory(item)
-        viewModel = ViewModelProvider(this, detailViewModelFactory).get(DetailViewModel::class.java)
-        binding.lifecycleOwner = this
-        binding.viewModel = viewModel
+        val viewModel =
+            ViewModelProvider(this, detailViewModelFactory).get(DetailViewModel::class.java)
 
-        return binding.root
+        return FragmentDetailBinding.inflate(inflater).apply {
+            fragmentViewModel = viewModel
+            lifecycleOwner = this@DetailFragment
+        }.root
     }
 }
