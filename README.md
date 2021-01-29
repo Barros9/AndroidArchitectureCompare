@@ -25,17 +25,3 @@ The API is "https://www.reddit.com/r/{SEARCH_PARAM}/top.json"
 * View — the UI layer, receives states and update the UI.
 * Intent — the action layer, user’s intent when interacting with the UI, for example, a click on a button.
 * ViewModel — the logic layer, accepts user's intent as input and produces states as output
-
-
-## Libraries
-
-|Name|Version|
-|----|-------|
-|Retrofit|2.9.0|
-|Coroutine|1.3.7|
-|RxJava|3.0.0|
-|Moshi|2.9.0|
-|Glide|4.11.0|
-|Navigation|2.3.0|
-|SafeArgs|1.0.0|
-|Ktlint|9.2.1|
